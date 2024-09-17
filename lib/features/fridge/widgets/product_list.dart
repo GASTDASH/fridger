@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fridger/repositories/products/products.dart';
+import 'package:fridger/repositories/products/products_repo_interface.dart';
 import 'package:get_it/get_it.dart';
-import 'package:talker_flutter/talker_flutter.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({
     super.key,
+    required this.productsList,
   });
 
-  final length = 4;
+  final List<Product> productsList;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return SliverList.builder(
-      itemCount: length + 1,
+      itemCount: productsList.length + 1,
       itemBuilder: (context, index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,11 +26,13 @@ class ProductList extends StatelessWidget {
               height: 80,
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, left: 6, right: 20),
-                child: index == length
+                child: index == productsList.length
                     ? GestureDetector(
                         onTap: () {
-                          GetIt.I<Talker>().debug("msg");
-                          //TODO
+                          GetIt.I<ProductsRepoInterface>().addProduct(
+                            //TODO
+                            product: Product(name: "Test", weight: 123),
+                          );
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -54,7 +58,7 @@ class ProductList extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Капуста $index",
+                              productsList[index].name,
                               style: theme.textTheme.displaySmall,
                               overflow: TextOverflow.fade,
                             ),
@@ -75,7 +79,7 @@ class ProductList extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(6)),
                                     child: Center(
                                       child: Text(
-                                        "300 г",
+                                        productsList[index].weight.toString(),
                                         style: theme.textTheme.titleMedium
                                             ?.copyWith(
                                                 fontWeight: FontWeight.w800),
