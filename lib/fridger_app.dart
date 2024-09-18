@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fridger/features/fridge/view/view.dart';
-import 'package:fridger/features/product_details/view/product_details_screen.dart';
+import 'package:fridger/routes/routes.dart';
 import 'package:fridger/ui/theme/theme.dart';
 
 class FridgerApp extends StatelessWidget {
@@ -11,10 +10,7 @@ class FridgerApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fridger',
       theme: lightTheme,
-      routes: {
-        "/": (context) => const FridgeScreen(),
-        "/details": (context) => const ProductDetailsScreen(),
-      },
+      routes: routes,
     );
   }
 }

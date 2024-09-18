@@ -17,21 +17,24 @@ class ProductAdapter extends TypeAdapter<Product> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Product(
-      name: fields[0] as String,
-      weight: fields[1] as int,
-      expireDate: fields[2] as DateTime?,
+      id: fields[0] as int,
+      name: fields[1] as String,
+      weight: fields[2] as int,
+      expireDate: fields[3] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Product obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.weight)
+      ..write(obj.name)
       ..writeByte(2)
+      ..write(obj.weight)
+      ..writeByte(3)
       ..write(obj.expireDate);
   }
 

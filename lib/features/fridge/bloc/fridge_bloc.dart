@@ -23,18 +23,31 @@ class FridgeBloc extends Bloc<FridgeEvent, FridgeState> {
         emit(FridgeFailure(e));
       }
     });
-    // TODO: Сделать эвент создания и сделать там тоже загрузку чтобы потом после загрузки вызвать LoadProducts
     on<FridgeAddProduct>(
       (event, emit) async {
-        try {} catch (e) {
+        emit(FridgeLoading());
+
+        try {
+          GetIt.I<ProductsRepoInterface>().addProduct(
+            product: event.product,
+          );
+
+          add(FridgeLoadProducts());
+        } catch (e) {
           emit(FridgeFailure(e));
         }
       },
     );
     on<FridgeRemoveProduct>(
       (event, emit) async {
+        emit(FridgeLoading());
+
         try {
-          //
+          GetIt.I<ProductsRepoInterface>().removeProduct(
+            id: event.id,
+          );
+
+          add(FridgeLoadProducts());
         } catch (e) {
           emit(FridgeFailure(e));
         }

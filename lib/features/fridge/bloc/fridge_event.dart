@@ -14,8 +14,8 @@ class FridgeAddProduct extends FridgeEvent {
 
 class FridgeRemoveProduct extends FridgeEvent {
   FridgeRemoveProduct({
-    required this.productName,
+    required this.id,
   });
 
-  final String productName;
+  final int id;
 }

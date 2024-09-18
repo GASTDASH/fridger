@@ -5,4 +5,5 @@ abstract class ProductsRepoInterface {
 
   Future<List<Product>> getProductsList();
   Future<void> addProduct({required Product product});
+  Future<void> removeProduct({required int id});
 }

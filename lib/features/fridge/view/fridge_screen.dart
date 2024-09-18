@@ -30,73 +30,80 @@ class _FridgeScreenState extends State<FridgeScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit),
-            label: "Холодильник",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant),
-            label: "Блюда",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            label: "Настройки",
-          ),
-        ],
-      ),
-      body: BlocBuilder<FridgeBloc, FridgeState>(
-        bloc: _fridgeBloc,
-        builder: (context, state) {
-          if (state is FridgeLoaded) {
-            return RefreshIndicator(
-              onRefresh: () {
-                return Future(() {
-                  loadProducts();
-                });
-              },
-              child: CustomScrollView(
-                slivers: [
-                  SliverAppBar(
-                    pinned: true,
-                    title: Text(
-                      "Холодильник",
-                      style: theme.textTheme.headlineLarge
-                          ?.copyWith(color: theme.hintColor),
-                    ),
-                    elevation: 2,
-                    shadowColor: Colors.black,
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(16),
-                    sliver: SliverToBoxAdapter(
-                      child: Text(
-                        "Наличие продуктов:",
-                        style: theme.textTheme.headlineSmall
+    return BlocProvider(
+      create: (context) => _fridgeBloc,
+      child: Scaffold(
+        body: BlocBuilder<FridgeBloc, FridgeState>(
+          bloc: _fridgeBloc,
+          builder: (context, state) {
+            if (state is FridgeLoaded) {
+              return RefreshIndicator(
+                onRefresh: () {
+                  return Future(() {
+                    loadProducts();
+                  });
+                },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      pinned: true,
+                      title: Text(
+                        "Холодильник",
+                        style: theme.textTheme.headlineLarge
                             ?.copyWith(color: theme.hintColor),
                       ),
+                      elevation: 2,
+                      shadowColor: Colors.black,
                     ),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16)
-                        .copyWith(bottom: 24),
-                    sliver: ProductList(
-                      productsList: state.productsList,
+                    SliverPadding(
+                      padding: const EdgeInsets.all(16),
+                      sliver: SliverToBoxAdapter(
+                        child: Text(
+                          "Наличие продуктов:",
+                          style: theme.textTheme.headlineSmall
+                              ?.copyWith(color: theme.hintColor),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }
-          if (state is FridgeLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is FridgeFailure) {
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16)
+                          .copyWith(bottom: 24),
+                      sliver: ProductList(
+                        productsList: state.productsList,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+            if (state is FridgeLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is FridgeFailure) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Error",
+                      style: theme.textTheme.displayMedium!
+                          .copyWith(fontWeight: FontWeight.w700),
+                    ),
+                    Text(
+                      state.error.toString(),
+                      style: theme.textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 24),
+                    const Icon(
+                      Icons.warning_amber,
+                      size: 80,
+                    ),
+                  ],
+                ),
+              );
+            }
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +114,7 @@ class _FridgeScreenState extends State<FridgeScreen> {
                         .copyWith(fontWeight: FontWeight.w700),
                   ),
                   Text(
-                    state.error.toString(),
+                    "Unexpected state",
                     style: theme.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 24),
@@ -118,29 +125,8 @@ class _FridgeScreenState extends State<FridgeScreen> {
                 ],
               ),
             );
-          }
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Error",
-                  style: theme.textTheme.displayMedium!
-                      .copyWith(fontWeight: FontWeight.w700),
-                ),
-                Text(
-                  "Unexpected state",
-                  style: theme.textTheme.titleMedium,
-                ),
-                const SizedBox(height: 24),
-                const Icon(
-                  Icons.warning_amber,
-                  size: 80,
-                ),
-              ],
-            ),
-          );
-        },
+          },
+        ),
       ),
     );
   }
