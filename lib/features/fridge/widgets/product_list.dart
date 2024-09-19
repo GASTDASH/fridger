@@ -13,8 +13,6 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return SliverList.builder(
       itemCount: productsList.length + 1,
       itemBuilder: (context, index) {
