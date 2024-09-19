@@ -13,6 +13,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedScreenIndex,
@@ -22,6 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedScreenIndex = value;
           });
         },
+        unselectedItemColor: theme.hintColor,
+        selectedItemColor: theme.colorScheme.primary,
+        showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit),
@@ -29,7 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant),
-            label: "Блюда",
+            label: "Мои блюда",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.group_outlined),
+            label: "Сообщество",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),

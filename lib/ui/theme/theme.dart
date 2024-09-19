@@ -9,7 +9,7 @@ final lightTheme = ThemeData(
   scaffoldBackgroundColor: backgroundColor,
   hintColor: const Color(0xFF575656),
   dividerTheme: const DividerThemeData(
-    color: Color(0xFFb3b2b2),
+    color: Color.fromARGB(255, 148, 148, 148),
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: backgroundColor,
