@@ -104,6 +104,11 @@ class _FridgeScreenState extends State<FridgeScreen> {
                 ),
               );
             }
+            if (state is FridgeInitial) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fridger/features/fridge/view/fridge_screen.dart';
+import 'package:fridger/routes/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,11 +9,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int selectedScreenIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedScreenIndex,
         iconSize: 30,
+        onTap: (value) {
+          setState(() {
+            selectedScreenIndex = value;
+          });
+        },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit),
@@ -29,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: const FridgeScreen(),
+      body: Builder(builder: (context) {
+        return screens[selectedScreenIndex];
+      }),
     );
   }
 }
