@@ -15,16 +15,16 @@ class AddProductTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 80,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 20, left: 6, right: 20),
-            child: GestureDetector(
-              onTap: () {
-                BlocProvider.of<FridgeBloc>(context).add(FridgeAddProduct(
-                    product: Product(
-                        id: UniqueKey().hashCode, name: "test", weight: 120)));
-              },
+        GestureDetector(
+          onTap: () {
+            BlocProvider.of<FridgeBloc>(context).add(FridgeAddProduct(
+                product: Product(
+                    id: UniqueKey().hashCode, name: "test", weight: 120)));
+          },
+          child: SizedBox(
+            height: 80,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20, left: 6, right: 20),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
