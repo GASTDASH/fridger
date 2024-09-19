@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridger/features/dishes/dishes.dart';
 
 class DishesScreen extends StatefulWidget {
   const DishesScreen({super.key});
@@ -25,6 +26,9 @@ class _DishesScreenState extends State<DishesScreen> {
             elevation: 2,
             shadowColor: Colors.black,
           ),
+          const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          const DishesList(),
+          const SliverToBoxAdapter(child: SizedBox(height: 16)),
         ],
       ),
     );

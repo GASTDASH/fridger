@@ -10,7 +10,7 @@ class FridgeDivider extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: 10,
+      height: 8,
       decoration: BoxDecoration(
         color: theme.dividerTheme.color,
         // gradient: LinearGradient(
@@ -25,6 +25,9 @@ class FridgeDivider extends StatelessWidget {
             blurRadius: 4,
           ),
         ],
+        borderRadius: const BorderRadius.vertical(
+          bottom: Radius.circular(20),
+        ),
       ),
     );
   }

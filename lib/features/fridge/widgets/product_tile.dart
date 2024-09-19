@@ -25,7 +25,7 @@ class ProductTile extends StatelessWidget {
         );
       },
       background: Container(
-        color: theme.dividerTheme.color,
+        // color: theme.dividerTheme.color,
         child: Padding(
           padding: const EdgeInsets.only(right: 16),
           child: Align(
@@ -75,7 +75,7 @@ class ProductTile extends StatelessWidget {
                             height: 25,
                             width: 55,
                             decoration: BoxDecoration(
-                                color: const Color(0xFFdadada).withOpacity(0.6),
+                                color: const Color(0xFFdadada).withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(6)),
                             child: Center(
                               child: Text(
