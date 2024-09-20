@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fridger/fridger_app.dart';
 import 'package:fridger/repositories/products/products.dart';
-import 'package:fridger/repositories/products/products_repo_interface.dart';
-import 'package:fridger/repositories/products/products_repo_local.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';

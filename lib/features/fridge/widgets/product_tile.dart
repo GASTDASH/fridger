@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fridger/features/fridge/bloc/fridge_bloc.dart';
 import 'package:fridger/repositories/products/products.dart';
-import 'package:fridger/ui/widgets/widgets.dart';
+import 'package:fridger/ui/ui.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({

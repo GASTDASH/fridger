@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fridger/features/fridge/bloc/fridge_bloc.dart';
-import 'package:fridger/repositories/products/models/models.dart';
-import 'package:fridger/ui/widgets/widgets.dart';
+import 'package:fridger/features/fridge/widgets/add_product_bottom_sheet.dart';
+import 'package:fridger/ui/ui.dart';
 
 class AddProductTile extends StatelessWidget {
   const AddProductTile({super.key});
@@ -16,10 +16,13 @@ class AddProductTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: () {
-            BlocProvider.of<FridgeBloc>(context).add(FridgeAddProduct(
-                product: Product(
-                    id: UniqueKey().hashCode, name: "test", weight: 120)));
+          onTap: () async {
+            final fridgeBloc = BlocProvider.of<FridgeBloc>(context);
+
+            final product = await _onTapAdd(context);
+            if (product != null) {
+              fridgeBloc.add(FridgeAddProduct(product: product));
+            }
           },
           child: SizedBox(
             height: 80,
@@ -45,6 +48,17 @@ class AddProductTile extends StatelessWidget {
         ),
         const FridgeDivider(),
       ],
+    );
+  }
+
+  Future<dynamic> _onTapAdd(BuildContext context) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return const AddProductBottomSheet();
+      },
     );
   }
 }

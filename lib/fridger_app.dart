@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fridger/routes/routes.dart';
-import 'package:fridger/ui/theme/theme.dart';
+import 'package:fridger/ui/ui.dart';
 
 class FridgerApp extends StatelessWidget {
   const FridgerApp({super.key});
