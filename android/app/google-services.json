@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "879832504455",
+    "project_id": "fridger-e9c37",
+    "storage_bucket": "fridger-e9c37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879832504455:android:7d87d91bfbecd758758022",
+        "android_client_info": {
+          "package_name": "com.gastdash.fridger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVcjmP-yRcQ3n7lZP6rWIR2RJw21NwdCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
