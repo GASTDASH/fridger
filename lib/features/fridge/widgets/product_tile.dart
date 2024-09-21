@@ -64,25 +64,28 @@ class ProductTile extends StatelessWidget {
                       overflow: TextOverflow.fade,
                     ),
                     Stack(
+                      alignment: Alignment.center,
                       children: [
-                        SvgPicture.asset(
-                          "assets/icons/weight.svg",
-                          height: 55,
+                        Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: SvgPicture.asset(
+                            "assets/icons/weight.svg",
+                            width: 60,
+                          ),
                         ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            height: 25,
-                            width: 55,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFdadada).withOpacity(0.8),
-                                borderRadius: BorderRadius.circular(6)),
-                            child: Center(
-                              child: Text(
-                                "${product.weight} г",
-                                style: theme.textTheme.titleMedium
-                                    ?.copyWith(fontWeight: FontWeight.w800),
-                              ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          height: 25,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFdadada).withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(6)),
+                          child: Center(
+                            child: Text(
+                              product.weight > 1000
+                                  ? "${(product.weight / 1000).truncate()} кг"
+                                  : "${product.weight} г",
+                              style: theme.textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.w800),
                             ),
                           ),
                         ),
