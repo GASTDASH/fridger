@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridger/features/community/community.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({super.key});
@@ -26,12 +27,14 @@ class _CommunityScreenState extends State<CommunityScreen> {
             shadowColor: Colors.black,
           ),
           SliverList.separated(
-            itemCount: 4,
+            itemCount: 6,
             itemBuilder: (context, index) {
-              return null;
+              return const CustomDishTile();
             },
             separatorBuilder: (context, index) {
-              return null;
+              return const Divider(
+                height: 0,
+              );
             },
           ),
         ],
