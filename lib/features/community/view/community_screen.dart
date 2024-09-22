@@ -25,6 +25,15 @@ class _CommunityScreenState extends State<CommunityScreen> {
             elevation: 2,
             shadowColor: Colors.black,
           ),
+          SliverList.separated(
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return null;
+            },
+            separatorBuilder: (context, index) {
+              return null;
+            },
+          ),
         ],
       ),
     );

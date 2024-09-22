@@ -9,9 +9,7 @@ class ProductsRepoLocal implements ProductsRepoInterface {
 
     await productsBox.put(product.id, product);
 
-    return Future(
-      () {},
-    );
+    return;
   }
 
   @override
@@ -25,19 +23,17 @@ class ProductsRepoLocal implements ProductsRepoInterface {
       },
     );
 
-    return Future(
-      () {
-        return productsList;
-      },
-    );
+    productsList.sort((a, b) => a.name.compareTo(b.name));
+
+    return productsList;
   }
 
   @override
-  Future<void> removeProduct({required int id}) {
+  Future<void> removeProduct({required int id}) async {
     var productsBox = Hive.box<Product>('products');
 
     productsBox.delete(id);
 
-    return Future(() {});
+    return;
   }
 }
