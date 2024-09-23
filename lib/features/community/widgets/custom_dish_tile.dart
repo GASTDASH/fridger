@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:fridger/repositories/dishes/models/models.dart';
 import 'package:fridger/ui/ui.dart';
 
 class CustomDishTile extends StatelessWidget {
   const CustomDishTile({
     super.key,
+    required this.dish,
   });
+
+  final CustomDish dish;
 
   @override
   Widget build(BuildContext context) {
+    // final CustomDish dish = CustomDish(
+    //   id: UniqueKey().hashCode,
+    //   name: "dish.name",
+    //   products: [
+    //     Product(
+    //       id: UniqueKey().hashCode,
+    //       name: "name",
+    //       weight: 1200,
+    //     ),
+    //   ],
+    //   username: "dish.username",
+    //   dateCreate: DateTime.now(),
+    // );
+
     final theme = Theme.of(context);
 
     return InkWell(
@@ -20,19 +38,35 @@ class CustomDishTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "dish.name",
+                // "dish.name",
+                dish.name,
                 style: theme.textTheme.headlineSmall,
               ),
               const SizedBox(height: 12),
               Text(
-                "dish.username",
+                dish.username,
                 style: theme.textTheme.titleMedium,
               ),
               Text(
-                "dish.dateCreate",
+                dish.dateCreate.toString(),
+                // "dish.dateCreate",
                 // "22 сентября 2024",
                 style: theme.textTheme.bodyMedium
                     ?.copyWith(color: theme.hintColor.withOpacity(0.7)),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                "Продукты:",
+                style: theme.textTheme.titleMedium,
+              ),
+              Text(
+                dish.products
+                    .map(
+                      (product) => product.name,
+                    )
+                    .toList()
+                    .join(", "),
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 12),
               Text(
@@ -40,7 +74,7 @@ class CustomDishTile extends StatelessWidget {
                 style: theme.textTheme.titleSmall,
               ),
               Text(
-                "dish.description\nописание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание",
+                dish.description ?? "Без описания",
                 style:
                     theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
                 maxLines: 8,
@@ -51,6 +85,7 @@ class CustomDishTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ActionButton(
+                    onPressed: () {},
                     label: "Добавить к себе",
                     icon: Icons.add_rounded,
                     color: theme.colorScheme.primary,

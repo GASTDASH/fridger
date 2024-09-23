@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fridger/fridger_app.dart';
+import 'package:fridger/repositories/dishes/custom_dishes_firebase.dart';
+import 'package:fridger/repositories/dishes/custom_dishes_interface.dart';
 import 'package:fridger/repositories/products/products.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -20,6 +22,9 @@ void main() async {
   GetIt.I.registerSingleton(talker);
   GetIt.I.registerSingleton<ProductsRepoInterface>(
     ProductsRepoLocal(),
+  );
+  GetIt.I.registerSingleton<CustomDishesInterface>(
+    CustomDishesFirebase(),
   );
 
   runApp(const FridgerApp());
