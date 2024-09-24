@@ -37,9 +37,11 @@ class AddProductTile extends StatelessWidget {
                     height: 30,
                   ),
                   const SizedBox(width: 12),
-                  Text(
-                    "Добавить",
-                    style: theme.textTheme.titleLarge,
+                  Expanded(
+                    child: Text(
+                      "Добавить",
+                      style: theme.textTheme.titleLarge,
+                    ),
                   ),
                 ],
               ),

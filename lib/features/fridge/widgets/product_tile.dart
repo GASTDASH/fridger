@@ -23,22 +23,19 @@ class ProductTile extends StatelessWidget {
           FridgeRemoveProduct(id: product.id),
         );
       },
-      background: Container(
-        // color: theme.dividerTheme.color,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "Удалить",
-                  style: theme.textTheme.bodyLarge,
-                ),
-                const Icon(Icons.delete_outline),
-              ],
-            ),
+      background: Padding(
+        padding: const EdgeInsets.only(right: 16),
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Удалить",
+                style: theme.textTheme.bodyLarge,
+              ),
+              const Icon(Icons.delete_outline),
+            ],
           ),
         ),
       ),
@@ -46,14 +43,14 @@ class ProductTile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 80,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, left: 6, right: 20),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed("/details");
-                },
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed("/details");
+            },
+            child: SizedBox(
+              height: 80,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, left: 6, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
