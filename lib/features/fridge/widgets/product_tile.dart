@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fridger/features/fridge/bloc/fridge_bloc.dart';
 import 'package:fridger/repositories/products/products.dart';
 import 'package:fridger/ui/ui.dart';
@@ -58,21 +57,23 @@ class ProductTile extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      product.name,
-                      style: theme.textTheme.displaySmall,
-                      overflow: TextOverflow.fade,
+                    Expanded(
+                      child: Text(
+                        product.name,
+                        style: theme.textTheme.displaySmall,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     Stack(
                       alignment: Alignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: SvgPicture.asset(
-                            "assets/icons/weight.svg",
-                            width: 60,
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(2),
+                        //   child: SvgPicture.asset(
+                        //     "assets/icons/weight.svg",
+                        //     width: 60,
+                        //   ),
+                        // ),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           height: 25,

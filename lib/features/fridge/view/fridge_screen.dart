@@ -137,6 +137,5 @@ class _FridgeScreenState extends State<FridgeScreen> {
   }
 }
 
-// TODO: Local Storage
 // TODO: JSON ser....
 // TODO: AutoRouter
